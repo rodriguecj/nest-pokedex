@@ -27,8 +27,8 @@ pipeline {
                         echo 'SAST: secrets-Horusec'
                         /* sh './automation/security.sh horusec' */
                         /* stash name: 'report_horusec.json', includes: 'report_horusec.json' */
-                        }
                     }
+                }
                 stage('Secrets-Gitleaks') {
                     steps {
                         echo 'SAST: Secrets-Gitleaks'
@@ -40,9 +40,9 @@ pipeline {
                             if (result > 0) {
                                 unstable(message: "Secrets issues found")
                             }   
-                            }
-                        } */
+                            } */
                     }
+                }
                 stage('S') {
                     /* agent{
                         docker{
@@ -67,13 +67,13 @@ pipeline {
                          stash name: 'report_semgrep.json', includes: 'report_semgrep.json' */
                     }
                 }
-            stage('audit') {
-                /* agent {
-                    docker {
-                        image 'node:18-alpine'
-                        args '-u root:root'
-                    }           
-                 } */
+                stage('audit') {
+                    /* agent {
+                        docker {
+                            image 'node:18-alpine'
+                            args '-u root:root'
+                        }           
+                    } */
                     steps {
                         echo 'Auditing'
                         /* catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
@@ -82,8 +82,9 @@ pipeline {
                         }  */
                     }
                 }
+            }
         }
-    }
+    
         stage('Build') {
             steps {
                 echo 'Building App...'
