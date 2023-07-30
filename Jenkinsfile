@@ -2,12 +2,32 @@ pipeline {
     agent any 
     stages {
         stage('Build') { 
-            agent {
-                docker { image 'node:18.16.0-alpine' }
+            parallel {
+                stage('Init'){
+                    agent {
+                        docker {
+                            image 'node:18-alpine'
+                            args '-u root:root'
+                        }           
+                    }
+                    steps {
+                        sh 'npm install'
+                    }
+                }
+
+                stage('Unit Tests'){
+                    agent {
+                        docker {
+                            image 'node:18-alpine'
+                            args '-u root:root'
+                        }           
+                    }
+                    steps {
+                        sh 'npm run test'
+                    }
+                }
             }
-            steps {
-                sh 'node --version'
-            }
+            
         }
         stage('Test'){
             steps {
