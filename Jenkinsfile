@@ -29,11 +29,9 @@ pipeline {
             }
             
         }
-        stage('Build'){
-            stage('Get - Enviroments'){
-                steps {
-                    sh './automation/docker_getenv.sh'
-                }
+        stage('Build - Get - Enviroments'){
+            steps {
+                sh './automation/docker_getenv.sh'
             }
         }
         stage('Deploy') {
