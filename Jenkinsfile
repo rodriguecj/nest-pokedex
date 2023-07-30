@@ -30,8 +30,10 @@ pipeline {
             
         }
         stage('Build'){
-            steps {
-                echo 'Building Docker...'
+            stage('Get - Enviroments'){
+                steps {
+                    sh './automation/docker_getenv.sh'
+                }
             }
         }
         stage('Deploy') {
