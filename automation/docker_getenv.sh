@@ -1,6 +1,6 @@
 #!/bin/bash
 # table utils
-source ./automation/printTable.sh
+source ./printTable.sh
 
 #Variable
 LRED='\033[1;31m'
