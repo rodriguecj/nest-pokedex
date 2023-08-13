@@ -29,9 +29,9 @@ pipeline {
             }
             
         }
-        stage('Build - Get - Enviroments'){
+        stage('Build - ECR'){
             steps {
-                sh './automation/docker_getenv.sh'
+                sh './automation/docker_build.sh'
             }
         }
         stage('Deploy') {
