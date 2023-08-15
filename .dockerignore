@@ -1,0 +1,10 @@
+## node_module
+node_modules
+# Bashs
+automation
+## build
+dist
+## Envieonments
+environments.json
+
+Jenkinsfile
