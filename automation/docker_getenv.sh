@@ -42,7 +42,7 @@ fi
 # check registry if not present then set to gitlab ECR
 if [ -z "$REGISTRY" ]
 then
-      REGISTRY="459137896070.dkr.ecr.us-east-1.amazonaws.com"
+      REGISTRY="054741877892.dkr.ecr.us-east-1.amazonaws.com"
 fi
 
 # check git user
