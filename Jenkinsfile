@@ -37,9 +37,25 @@ pipeline {
                 }
             }
         }
+        stage('Build-Docker-compose and Check EB'){
+            parallel {
+                stage('Build Compose with new Docker-image'){
+                    steps {
+                        sh './automation/aws_beanstalk.sh compose'
+                    }
+                }
+                stage('Check AWS Elastic-beanstalk'){
+                    steps {
+                        sh './automation/aws_beanstalk.sh check'
+                    }
+                }
+            }
+        }
         stage('Deploy') {
             steps {
-                echo 'Deploying...'
+                withAWS(credentials: 'aws_jenkins', region: 'us-east-1') {
+                    sh './automation/aws_beanstalk.sh deploy'
+                }
             }
         }
     }

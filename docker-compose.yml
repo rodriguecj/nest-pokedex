@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  backend:
+    image: REGISTRY/REPOSITORY:VERSION
+    container_name: backend
+    restart: always
+    ports:
+      - 80:3000
