@@ -46,7 +46,9 @@ pipeline {
                 }
                 stage('Check AWS Elastic-beanstalk'){
                     steps {
-                        sh './automation/aws_beanstalk.sh check'
+                        withAWS(credentials: 'aws_jenkins', region: 'us-east-1') {
+                            sh './automation/aws_beanstalk.sh check'
+                        }
                     }
                 }
             }
