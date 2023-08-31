@@ -15,8 +15,10 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World from A with AWS!!"', () => {
-      expect(appController.getHello()).toBe('Hello World from A with AWS!!');
+    it('should return "Hello World from A with AWS con Keisel!!!!"', () => {
+      expect(appController.getHello()).toBe(
+        'Hello World from A with AWS con Keisel!!',
+      );
     });
   });
 });
