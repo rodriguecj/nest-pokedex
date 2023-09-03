@@ -43,6 +43,29 @@ pipeline {
                         stash name: 'report_horusec.json', includes: 'report_horusec.json'
                     }
                 }
+                stage('Semgrep') {
+                    agent{
+                        docker{
+                            image 'returntocorp/semgrep'
+                            args '-u root:root'                    
+                        }
+                    }
+                    steps {
+                         sh '''
+                        cat << 'EOF' | bash
+                            semgrep ci --config=auto --json --output=report_semgrep.json --max-target-bytes=2MB
+                            EXIT_CODE=$?
+                            if [ "$EXIT_CODE" = "0" ] || [ "$EXIT_CODE" = "1" ]
+                            then
+                                exit 0
+                            else
+                                exit $EXIT_CODE
+                            fi
+                        EOF
+                         '''
+                         stash name: 'report_semgrep.json', includes: 'report_semgrep.json'
+                    }
+                }
             }
         }
 
