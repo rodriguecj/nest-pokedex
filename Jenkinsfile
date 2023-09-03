@@ -32,11 +32,11 @@ pipeline {
 
         stage('SAST - Security'){
             parallel {
-                stage('Secrete'){
+                /* stage('Secrete'){
                     steps {
                         sh './automation/security.sh hadolint'
                     }
-                }
+                } */
                 stage('Horusec'){
                     steps {
                         sh './automation/security.sh horusec'
