@@ -43,6 +43,21 @@ pipeline {
                         stash name: 'report_horusec.json', includes: 'report_horusec.json'
                     }
                 }
+
+                stage('Secrets-Gitleaks') {
+                    steps {
+                        script {
+                            def result = sh label: "Secrets", returnStatus: true,
+                                script: """\
+                                    ./automation/security.sh secrets
+                            """
+                            if (result > 0) {
+                                unstable(message: "Secrets issues found")
+                            }   
+                        }
+                    }
+                }
+
                 stage('Semgrep') {
                     agent{
                         docker{
