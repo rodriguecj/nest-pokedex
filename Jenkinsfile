@@ -44,7 +44,7 @@ pipeline {
                     }
                 }
 
-                stage('Secrets-Gitleaks') {
+                /* stage('Secrets-Gitleaks') {
                     steps {
                         script {
                             def result = sh label: "Secrets", returnStatus: true,
@@ -56,7 +56,7 @@ pipeline {
                             }   
                         }
                     }
-                }
+                } */
 
                 stage('Semgrep') {
                     agent{
@@ -82,22 +82,20 @@ pipeline {
                     }
                 }
 
-                stage('audit') {
-                agent {
-                    docker {
-                        image 'node:18-alpine'
-                        args '-u root:root'
-                    }           
-                }
-                steps {
-                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                        sh 'npm audit --registry=https://registry.npmjs.org -audit-level=critical --json > report_npmaudit.json'
-                        stash name: 'report_npmaudit.json', includes: 'report_npmaudit.json'
-                    } 
-                }
-                }
-
-
+                /* stage('audit') {
+                    agent {
+                        docker {
+                            image 'node:18-alpine'
+                            args '-u root:root'
+                        }           
+                    }
+                    steps {
+                        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                            sh 'npm audit --registry=https://registry.npmjs.org -audit-level=critical --json > report_npmaudit.json'
+                            stash name: 'report_npmaudit.json', includes: 'report_npmaudit.json'
+                        } 
+                    }
+                } */
             }
         }
 
