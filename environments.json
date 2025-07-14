@@ -11,7 +11,7 @@
         "feature/jenkins":{
             "TARGET_AWS_ACCOUNT":"054741877892",
             "eb_environmentid" : "e-3upver9wpp",
-            "eb_environmentname" : "chat-app-backend-develop",
+            "eb_environmentname" : "chat-app-backend-env",
             "eb_applicationname" :"chat-app-backend",
             "s3bucketname" : "nest-backend-devops-deploy",
             "s3key" : "dev"
