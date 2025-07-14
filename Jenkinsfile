@@ -107,7 +107,7 @@ pipeline {
                 }
             }
         }
-        /* stage('Build-Docker-compose and Check EB'){
+        stage('Build-Docker-compose and Check EB'){
             parallel {
                 stage('Build Compose with new Docker-image'){
                     steps {
@@ -129,6 +129,6 @@ pipeline {
                     sh './automation/aws_beanstalk.sh deploy'
                 }
             }
-        } */
+        }
     }
 }
