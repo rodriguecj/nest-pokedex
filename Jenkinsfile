@@ -103,7 +103,7 @@ pipeline {
             steps {
                 withAWS(credentials: 'aws_jenkins', region: 'us-east-1') {
                     sh './automation/docker_build.sh'
-                    /* sh './automation/docker_push.sh' */
+                    sh './automation/docker_push.sh'
                 }
             }
         }
